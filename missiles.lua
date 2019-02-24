@@ -52,8 +52,8 @@ Returns: steeringForceVelocity as Vector3
 --]]
 local function getSteeringForce(projectile, target, maxSpeed, decelRadius)
 	assert(isElement(target) and getElementType(projectile) == "projectile")
-	maxSpeed = 1 or maxSpeed
-	decelRadius = 0 or decelRadius
+	maxSpeed = maxSpeed or 1
+	decelRadius = decelRadius or 0
  
 	local px, py, pz = getElementPosition(projectile)
 	local pvx, pvy, pvz = getElementVelocity(projectile)

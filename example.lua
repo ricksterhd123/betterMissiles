@@ -4,9 +4,10 @@ A51 no fly zone example script
 
 local a51ColRadius = 100
 local a51ColHeight = 100
-local SAM_SITES = {{237.57784, 1694.60608, 27.07218}}
+local SAM = { pos = {{237.57784, 1694.60608, 27.07218}} }
 
-function shootSAM(target)
+function SAM:shoot(target)
+	createMissile(target, self.pos[1][1], self.pos[1][2], self.pos[1][3], 1, target) 		
 end
 
 function onEnterNoFlyZone(element, matchingDimension)
@@ -14,7 +15,7 @@ function onEnterNoFlyZone(element, matchingDimension)
 
 	local vehicle = getPedOccupiedVehicle(localPlayer)
 	if element == localPlayer or element == vehicle then
-		createMissile(element, SAM_SITES[1][1], SAM_SITES[1][2], SAM_SITES[1][3], 1, element) 		
+		SAM:shoot(element)
 	end
 end
 

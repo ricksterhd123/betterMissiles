@@ -1,8 +1,6 @@
 --[[
-Description: Create a missile just like you would createProjectile()
-Params:
-
-Returns:
+Description: Create a missile just like you would createProjectile in MTA except you don't need weaponType it's 20 by default.
+Returns: projectile
 --]]
 function createMissile(creator, posX, posY, posZ, force, target, rotX, rotY, rotZ, velX, velY, velZ, model)
 	if not target then return false end
@@ -12,10 +10,20 @@ function createMissile(creator, posX, posY, posZ, force, target, rotX, rotY, rot
 	end
 	return projectile
 end
+
 --[[
-Get the steering force velocity the projectile should follow
+Get the desired steering force
+Params: projectile - The steering force we're calculating for
+	target - The target the projectile must steer toward
+	maxSpeed - The maximum speed of the projectile.
+	decelRadius - Minimum distance before the projectile begins to decelerate.
+Returns: steeringForceVelocity as Vector3 
 --]]
-function getSteeringForce(projectile, target, maxSpeed, decelRadius)
+local function getSteeringForce(projectile, target, maxSpeed, decelRadius)
+	assert(isElement(target) and getElementType(projectile) == "projectile")
+	maxSpeed = 1 or maxSpeed
+	decelRadius = 0 or decelRadius
+ 
 	local px, py, pz = getElementPosition(projectile)
 	local pvx, pvy, pvz = getElementVelocity(projectile)
 	local tx, ty, tz = getElementPosition(target)
@@ -35,14 +43,14 @@ function getSteeringForce(projectile, target, maxSpeed, decelRadius)
 end
 
 --[[
-Description: Shabby proportional navigation on missiles with element data 'target'
+Description: Calculate new position for all missiles
 --]]
-function proportionalNavigation()
+local function proportionalNavigation()
 	for i, projectile in ipairs(getElementsByType("projectile")) do
 		-- Check if it has a target
 		local target = getElementData(projectile, "target")
 		if target then
-			local steeringForce = getSteeringForce(projectile, target, 5, 1)
+			local steeringForce = getSteeringForce(projectile, target)
 			local vx, vy, vz = steeringForce:getX(), steeringForce:getY(), steeringForce:getZ()
 			local px, py, pz = getElementPosition(projectile)
 			setElementPosition(projectile, px + vx, py + vy, pz + vz)
@@ -50,9 +58,4 @@ function proportionalNavigation()
 		end
 	end
 end
-addEventHandler("onClientPreRender", getRootElement(), 
-proportionalNavigation)
-
-
-
-
+addEventHandler("onClientPreRender", getRootElement(), proportionalNavigation)

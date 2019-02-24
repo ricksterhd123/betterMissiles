@@ -1,5 +1,6 @@
 <meta>
 	<info author="exilepilot" version="0.1" name="betterMissiles"/>
 	<script src="missiles.lua" type="client"/>
+	<script src="example.lua" type="client"/>
 	<export function="createMissile" type="client"/>
 </meta>

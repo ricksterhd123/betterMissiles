@@ -76,7 +76,7 @@ end
 --[[
 Description: Calculate new position for all missiles
 --]]
-local function proportionalNavigation()
+local function projectileNavigation()
 	for i, projectile in ipairs(getElementsByType("projectile")) do
 		-- Check if it has a target
 		local target = getElementData(projectile, "target")
@@ -89,4 +89,4 @@ local function proportionalNavigation()
 		end
 	end
 end
-addEventHandler("onClientPreRender", getRootElement(), proportionalNavigation)
+addEventHandler("onClientPreRender", getRootElement(), projectileNavigation)

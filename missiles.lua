@@ -28,6 +28,9 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <http://unlicense.org>
 ]]
 
+local MAX_SPEED = 1
+local DECEL_RADIUS = 1
+
 --[[
 Description: Create a missile just like you would createProjectile in MTA except you don't need weaponType it's 20 by default.
 NOTE: if the target is a player and is inside a vehicle then the target should be the vehicle => better sync 
@@ -53,7 +56,7 @@ Returns: steeringForceVelocity as Vector3
 local function getSteeringForce(projectile, target, maxSpeed, decelRadius)
 	assert(isElement(target) and getElementType(projectile) == "projectile")
 	maxSpeed = maxSpeed or 1
-	decelRadius = decelRadius or 0
+	decelRadius = decelRadius or 1
  
 	local px, py, pz = getElementPosition(projectile)
 	local pvx, pvy, pvz = getElementVelocity(projectile)
@@ -81,7 +84,7 @@ local function projectileNavigation()
 		-- Check if it has a target
 		local target = getElementData(projectile, "target")
 		if target then
-			local steeringForce = getSteeringForce(projectile, target)
+			local steeringForce = getSteeringForce(projectile, target, MAX_SPEED, DECEL_RADIUS)
 			local vx, vy, vz = steeringForce:getX(), steeringForce:getY(), steeringForce:getZ()
 			local px, py, pz = getElementPosition(projectile)
 			setElementPosition(projectile, px + vx, py + vy, pz + vz)

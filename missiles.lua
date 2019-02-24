@@ -4,9 +4,9 @@ Params:
 
 Returns:
 --]]
-function createMissile(creator, weaponType, posX, posY, posZ, force, target, rotX, rotY, rotZ, velX, velY, velZ, model)
+function createMissile(creator, posX, posY, posZ, force, target, rotX, rotY, rotZ, velX, velY, velZ, model)
 	if not target then return false end
-	local projectile = createProjectile(creator, weaponType, posX, posY, force, target, rotX, rotY, rotZ, velX, velZ, model)
+	local projectile = createProjectile(creator, 20, posX, posY, posZ, force, target, rotX, rotY, rotZ, velX, velZ, model)
 	if projectile then
 		setElementData(projectile, "target", target)
 	end

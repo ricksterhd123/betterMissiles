@@ -14,7 +14,7 @@ function onEnterNoFlyZone(element, matchingDimension)
 
 	local vehicle = getPedOccupiedVehicle(localPlayer)
 	if element == localPlayer or element == vehicle then
-		createMissile(element, 20, SAM_SITES[1][1], SAM_SITES[1][2], SAM_SITES[1][3], 1, element) 		
+		createMissile(element, SAM_SITES[1][1], SAM_SITES[1][2], SAM_SITES[1][3], 1, element) 		
 	end
 end
 

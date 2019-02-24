@@ -1,4 +1,4 @@
-== Better missiles
+# Better missiles
 The standard GTA:SA missile guidance / trajectory path is good but I 
 decided I can try improve it slightly...
 
@@ -7,5 +7,8 @@ guidance law used by homing/ target missiles IRL. I managed to
 implement a shabby version of that using previous implementations found 
 online.
 
-== Sources:
+# Sources:
 - Autonomous navigation using AR: https://software.intel.com/en-us/articles/introduction-to-autonomous-navigation-for-augmented-reality
+
+# Example demonstration:
+- https://www.youtube.com/watch?v=4WiJDGvx150

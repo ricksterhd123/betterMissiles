@@ -1,5 +1,6 @@
---[[ 
-A51 no fly zone example script
+--[[
+Author: exilepilot
+Description: A51 no fly zone example script
 --]]
 
 local a51ColRadius = 100
@@ -14,7 +15,7 @@ function onEnterNoFlyZone(element, matchingDimension)
 	if not matchingDimension then return false end
 
 	local vehicle = getPedOccupiedVehicle(localPlayer)
-	if element == localPlayer or element == vehicle then
+	if element == vehicle then
 		SAM:shoot(element)
 	end
 end

@@ -88,7 +88,6 @@ local function projectileNavigation()
 			local vx, vy, vz = steeringForce:getX(), steeringForce:getY(), steeringForce:getZ()
 			local px, py, pz = getElementPosition(projectile)
 			setElementPosition(projectile, px + vx, py + vy, pz + vz)
-			--setElementVelocity(projectile, vx, vy, vz)
 		end
 	end
 end

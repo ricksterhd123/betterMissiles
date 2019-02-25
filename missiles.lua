@@ -47,10 +47,10 @@ end
 
 --[[
 Get the desired steering force
-Params: projectile - The steering force we're calculating for
-	target - The target the projectile must steer toward
-	maxSpeed - The maximum speed of the projectile.
-	decelRadius - Minimum distance before the projectile begins to decelerate.
+Params: projectile - The projectile we use to calculate the steering force
+	target - The target the projectile must steer towards
+	maxSpeed - The maximum speed of the projectile
+	decelRadius - The minimum distance before the projectile begins to decelerate
 Returns: steeringForceVelocity as Vector3 
 --]]
 local function getSteeringForce(projectile, target, maxSpeed, decelRadius)
